@@ -8,9 +8,9 @@ const FloorTable = ({ projects, floorNo }) => {
   const handleSelectProject = (project) => {
     setSelectedProjects((prevSelected) => {
       if (prevSelected.includes(project.InventoryID)) {
-        return prevSelected.filter(id => id !== project.InventoryID); 
+        return prevSelected.filter(id => id !== project.InventoryID);
       }
-      return [...prevSelected, project.InventoryID]; 
+      return [...prevSelected, project.InventoryID];
     });
   };
 
@@ -23,13 +23,13 @@ const FloorTable = ({ projects, floorNo }) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`, 
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
           },
           body: JSON.stringify(payload),
         });
         const data = await response.json();
-        console.log(data,'beforeInspectionData')
-        setBeforeInspectionData(data); 
+        console.log(data, 'beforeInspectionData')
+        setBeforeInspectionData(data);
         console.log('API Response:', data);
       } catch (error) {
         console.error('Error calling API:', error);
@@ -42,41 +42,41 @@ const FloorTable = ({ projects, floorNo }) => {
     if (beforeInspectionData) {
       const addInspectionSpace = async () => {
         try {
-            console.log('is it getting called',selectedProjects)
+          console.log('is it getting called', selectedProjects)
           const dataToSend = [
             {
-              InventoryID: selectedProjects[0], 
-              Spaces: beforeInspectionData, 
+              InventoryID: selectedProjects[0],
+              Spaces: beforeInspectionData,
             },
           ];
- 
+
           const response = await fetch('https://oro24world.com/api/HandOverProjectDelivery/add-inspection-space', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
             },
-            body: JSON.stringify(dataToSend), 
+            body: JSON.stringify(dataToSend),
           });
-  
+
           const data = await response.json();
-          setAssignedInspection(data); 
-          if(data[0]?.Message === 'Successfull'){
-            setTimeout(()=>{
-                alert('Success')
-            },2000)
-         
+          setAssignedInspection(data);
+          if (data[0]?.Message === 'Successfull') {
+            setTimeout(() => {
+              alert('Success')
+            }, 2000)
+
           }
           console.log('Assigned Inspection Response:', data);
         } catch (error) {
           console.error('Error calling add-inspection-space API:', error);
         }
       };
-  
+
       addInspectionSpace();
     }
   }, [beforeInspectionData]);
-  
+
 
   return (
     <div className='mt-4'>
@@ -99,11 +99,11 @@ const FloorTable = ({ projects, floorNo }) => {
       </div>
 
       {
-        !beforeInspectionData && 
+        !beforeInspectionData &&
         <div className='bg-selection text-check fixed bottom-0 h-[15vh] w-full text-center flex items-center justify-center'>
           You selected <span className='font-bold text-[20px]'> &nbsp; {selectedProjects.length} units</span>
-          <button 
-            className='btn-gold w-[202px] h-[52px] text-white font-bold rounded-[8px] ml-3 text-[15px]' 
+          <button
+            className='btn-gold w-[202px] h-[52px] text-white font-bold rounded-[8px] ml-3 text-[15px]'
             onClick={handleAssignChecklist}
           >
             Assign Check list
@@ -111,11 +111,11 @@ const FloorTable = ({ projects, floorNo }) => {
         </div>
       }
 
-    
+
       {assignedInspection && (
         <div className="assigned-inspection-data">
-     
-        
+
+
         </div>
       )}
     </div>
