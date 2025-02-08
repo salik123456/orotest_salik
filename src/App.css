@@ -1,0 +1,65 @@
+body{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", serif;
+}
+
+.hero-sec{
+  background-image: url('../src/assets/coverimg.png');
+  background-size: cover;
+  background-position: center;
+
+}
+
+.form-box{
+  background-color: 
+  rgba(255, 255, 255, 0.97);
+}
+
+.input-new::placeholder{
+  color:  rgba(0, 0, 0, 1);
+  font-size: 12px;
+}
+
+.input-new{
+  border: 1px solid rgba(207, 212, 218, 1);
+  background-color: rgba(234, 240, 253, 1);
+  padding-left: 10px;
+}
+.btn-submit{
+background-color: rgba(97, 172, 203, 1);
+border: 1px solid rgba(255, 255, 255, 1)
+}
+.text-orig{
+  color: rgba(0, 0, 0, 1);
+
+}
+.low{
+  color: rgba(136, 138, 152, 1);
+
+}
+.purple-text{
+  color: rgba(178, 50, 128, 1);
+  
+}
+.bg-selection{
+  background: rgba(245, 231, 205, 1);
+
+}
+.text-check{
+  color: rgba(80, 80, 80, 1);
+}
+.btn-gold{
+  background: rgba(164, 134, 89, 1);
+
+}
+/* .floor-box{
+  background: rgba(243, 246, 249, 1);
+
+} */
+
+.selected-project{
+  background: rgba(134, 220, 255, 0.2);
+
+}
